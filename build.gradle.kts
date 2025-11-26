@@ -24,6 +24,8 @@ repositories {
     mavenCentral()
 }
 
+extra["springAiVersion"] = "1.1.0-M1"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     compileOnly("org.projectlombok:lombok")
@@ -31,6 +33,13 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation("org.springframework.ai:spring-ai-starter-mcp-server-webmvc")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.ai:spring-ai-bom:${property("springAiVersion")}")
+    }
 }
 
 tasks.withType<Test> {
